@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e21d-e06a-8000-7d53-01ef9001ef90_39285</versionUuid>
+    <rule>
+        <name>TMS_uiSectionStateGrid</name>
+        <uuid>_a-0000e21d-e06a-8000-7d53-01ef9001ef90_32222</uuid>
+        <description>Grid to show state details</description>
+        <parentUuid>_a-0000e21d-e06a-8000-7d53-01ef9001ef90_32205</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!stateDetails:#"_a-0000e21d-e06a-8000-7d53-01ef9001ef90_32216"(),
+  local!pagingInfo:#"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 5
+  ),
+  with(
+  local!data:todatasubset(
+    local!stateDetails,
+    local!pagingInfo
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+  label: "State Details",
+  contents: {
+    #"SYSTEM_SYSRULES_boxLayout"(
+      label: "State Details",
+      style: "ACCENT",
+      contents: {
+        #"SYSTEM_SYSRULES_gridField"(
+      totalCount: local!data.totalCount,
+      columns: {
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "id",
+          field: "id",
+          data: index(local!data.data,"id",null())
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "State",
+          field: "name",
+          data: index(local!data.data,"name",null())
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Code",
+          field: "code",
+          data: index(local!data.data,"code",null())
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "TimeZone",
+          field: "timeZone",
+          data: index(local!data.data,"timeZone",null())
+        )
+      },
+      value: local!pagingInfo,
+      saveInto: local!pagingInfo
+    )
+    }
+    )
+  }
+)
+))</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_32243"/>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_32612"/>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_32768"/>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_35563"/>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_33007"/>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_37149"/>
+        <historyInfo versionUuid="_a-0000e21d-e06a-8000-7d53-01ef9001ef90_39285"/>
+    </history>
+</contentHaul>
